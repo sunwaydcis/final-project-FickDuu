@@ -12,4 +12,4 @@ object HumanityHand extends JFXApp3{
       scene  = LoginScene()
     }
   }
-}
+} 
