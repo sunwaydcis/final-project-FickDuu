@@ -12,9 +12,9 @@ import HumanityHandGame.ui.MenuScene
 object CardListScene {
   private val cardCollection = new CardCollection()
 
-  cardCollection.addCard(new AttackCard("Sword Slash", "A powerful slash", 20))
-  cardCollection.addCard(new DefenseCard("Shield Block", "Block incoming damage", 10))
-  cardCollection.addCard(new SpecialCard("Fireball", "Burn your enemy", "Burn"))
+  cardCollection.addCard(new AttackCard("Sword Slash", "A powerful slash", 3))
+  cardCollection.addCard(new DefenseCard("Shield Block", "Block incoming damage", 3))
+  cardCollection.addCard(new SpecialCard("Flash", "Can't see my hand", "Blind"))
 
   def apply(): Scene = new Scene {
     val messageLabel = new Label()
