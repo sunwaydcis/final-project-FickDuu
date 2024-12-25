@@ -1,7 +1,6 @@
 package HumanityHandGame.services
 
-import HumanityHandGame.models
-import HumanityHandGame.models.{AttackCard, DefenseCard, Enemy, SpecialCard}
+import HumanityHandGame.models.{Player, Enemy, AttackCard, DefenseCard, SpecialCard}
 
 class Game(player: Player){
   private var enemyHp = 20
@@ -17,7 +16,7 @@ class Game(player: Player){
     while(!gameOver){
       val enemy = new Enemy(enemyHp)
       initializeEnemyDeck(enemy)
-      println(s"Enemy appeared!")
+      println(s"Enemy appeared! $enemyHp HP")
       gameOver = playMatch(enemy)
       if(!gameOver){
         matchesPlayed += 1
@@ -32,7 +31,7 @@ class Game(player: Player){
     val cardPool = List(
       new AttackCard("Bite", "Enemy attack", 2, 4),
       new DefenseCard("Thick Skin", "Enemy defense", 3, 5),
-      new SpecialCard("Roar", "Stuns for 2 rounds")
+      new SpecialCard("Roar", "Stuns for 2 rounds", "Stun")
     )
     enemy.initializeDeck(List.fill(5)(cardPool(scala.util.Random.nextInt(cardPool.size))))
   }
@@ -55,7 +54,7 @@ class Game(player: Player){
   }
   
   private def playerTurn(enemy: Enemy): Unit ={
-    prinln("\nYour turn")
+    println("\nYour turn")
     player.viewHand()
     println("Select a card to play [0-${player.handSize - 1}], or -1 to skip:")
     val choice = scala.io.StdIn.readInt()
@@ -79,9 +78,10 @@ class Game(player: Player){
     val newCard = choice match{
       case 1 => new AttackCard("Power Slash", "Stronger attack", 3, 6)
       case 2 => new DefenseCard("Fortify", "Stronger defense", 4, 7)
-      case 3 => new SpecialCard("Freeze", "Freezes enemy for 2 rounds")
+      case 3 => new SpecialCard("Freeze", "Freezes enemy for 2 rounds", "Freeze")
       case _ =>
         println("Invalid choice, choose again")
+        new AttackCard("Quick Strike", "Default attack card", 1, 3) //change this
     }
     player.addCardToDeck(newCard)
     println(s"You received: $newCard")

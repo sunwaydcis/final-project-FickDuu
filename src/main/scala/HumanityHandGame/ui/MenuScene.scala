@@ -6,7 +6,6 @@ import scalafx.scene.layout._
 import scalafx.geometry.Insets
 import HumanityHandGame.services.{LoginManager, Game, Scoreboard}
 import HumanityHandGame.models.Player
-import HumanityHandGame.ui.CardListScene
 
 object MenuScene{
   def apply(): Scene = new Scene{
@@ -34,6 +33,7 @@ object MenuScene{
         },
         new Button("Logout"){
           onAction = _ => {
+            Scoreboard.saveToFile()
             LoginManager.logout()
             scalafx.application.JFXApp3.PrimaryStage().scene = LoginScene()
           }

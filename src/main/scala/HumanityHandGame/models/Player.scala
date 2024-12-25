@@ -2,22 +2,16 @@ package HumanityHandGame.models
 
 import scala.util.Random
 import scala.collection.mutable
+import scala.collection.mutable.ListBuffer
 
-class Player(val name: String) extends GameEntity{
+class Player(val name: String) extends GameEntity with DeckHandler {
   var hp: Int = 50
-  private val deck: mutable.ListBuffer[Card] = mutable.ListBuffer()
-  private val hand: mutable.ListBuffer[Card] = mutable.ListBuffer()
+  val deck: ListBuffer[Card] = ListBuffer()
+  val hand: ListBuffer[Card] = ListBuffer()
   
   def initializeDeck(initialCards: Seq[Card]): Unit = {
     deck.clear()
     deck ++= initialCards
-  }
-  
-  def drawCards(count: Int): Unit ={
-    val cardsToDraw = math.min(count, deck.size)
-    hand ++= Rnadom.shuffle(deck).take(cardsToDraw)
-    deck --= hand
-    println(s"$name drew $cardsToDraw cards. Hand: ${hand.map(_.name).mkString(", ")}")
   }
   
   def playCard(cardIndex: Int, target: GameEntity): Unit = {
