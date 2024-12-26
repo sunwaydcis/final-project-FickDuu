@@ -12,6 +12,8 @@ object Scoreboard{
     println(s"Score added: $playerName - $score")
   }
 
+  def getScores:List[(String, Int)] = scores.sortBy(-_._2).toList
+
   def displayScores(): Unit ={
     println("\nHigh Scores:")
     scores.sortBy(-_._2).zipWithIndex.foreach{
@@ -40,18 +42,24 @@ object Scoreboard{
       val file = new File("scores.txt")
       if(file.exists()){
         source = Some(Source.fromFile(file))
-        for(line<- source.get.getLines()){
-          val Array(name, score) = line.split(":")
-          scores+= ((name, score.toInt))
+        for (line <- source.get.getLines()) {
+          val parts = line.split(":")
+          if (parts.length == 2) {
+            val name = parts(0)
+            val score = parts(1).toIntOption.getOrElse(0)
+            scores += ((name, score))
+          } else {
+            println(s"Skipping malformed line: $line")
+          }
         }
-        println("Scores loaded Successfully")
-      }else{
-        println("No scores file found, starting fresh")
+        println("Scores loaded successfully.")
+      } else {
+        println("No scores file found, starting fresh.")
       }
-    }catch{
+    } catch {
       case e: Exception =>
         println(s"Failed to load scores: ${e.getMessage}")
-    } finally{
+    } finally {
       source.foreach(_.close())
     }
   }
