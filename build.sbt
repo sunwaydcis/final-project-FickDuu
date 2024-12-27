@@ -1,3 +1,4 @@
+import scala.collection.immutable.Seq
 
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
@@ -14,7 +15,7 @@ lazy val root = (project in file("."))
         case n if n.startsWith("Windows") => "win"
         case _                            => throw new Exception("Unknown platform!")
       }
-      Seq("base", "controls", "ch", "graphics", "media", "swing", "web")
+      Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
         .map(m => "org.openjfx" % s"javafx-$m" % "21.0.4" classifier osName)
     },
     libraryDependencies ++= Seq("org.scalafx" %% "scalafx" % "22.0.0-R33")
