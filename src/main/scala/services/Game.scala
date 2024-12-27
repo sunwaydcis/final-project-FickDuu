@@ -1,7 +1,6 @@
 package services
 
 import models.*
-import models.{AttackCard, DefenseCard, Enemy, Player, SpecialCard}
 
 class Game(player: Player){
   private var enemyHp = 20
