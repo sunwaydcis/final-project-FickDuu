@@ -1,10 +1,10 @@
-package HumanityHandGame.ui.controller
+package HumanityHandGame.ch.makery.address.view
 
+import HumanityHandGame.ch.makery.address.MenuScene
 import scalafx.scene.control.ListView
 import scalafx.collections.ObservableBuffer
 import javafx.fxml.FXML
 import HumanityHandGame.services.Scoreboard
-import HumanityHandGame.ui.MenuScene
 import javafx.collections.FXCollections
 import scalafx.event.ActionEvent
 import scalafx.application.JFXApp3

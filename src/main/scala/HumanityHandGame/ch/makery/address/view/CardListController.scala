@@ -1,9 +1,9 @@
-package HumanityHandGame.ui.controller
+package HumanityHandGame.ch.makery.address.view
 
+import HumanityHandGame.ch.makery.address.MenuScene
 import scalafx.scene.control.{ListView, TextField}
 import scalafx.collections.ObservableBuffer
 import HumanityHandGame.services.CardCollection
-import HumanityHandGame.ui.MenuScene
 import javafx.collections.FXCollections
 import javafx.fxml.FXML
 import scalafx.event.ActionEvent

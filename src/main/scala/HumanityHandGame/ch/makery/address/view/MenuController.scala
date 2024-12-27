@@ -1,8 +1,8 @@
-package HumanityHandGame.ui.controller
+package HumanityHandGame.ch.makery.address.view
 
+import HumanityHandGame.ch.makery.address.{CardListScene, LoginScene, ScoreboardScene}
 import scalafx.event.ActionEvent
 import javafx.fxml.FXML
-import HumanityHandGame.ui.{CardListScene, ScoreboardScene, LoginScene}
 import HumanityHandGame.services.{LoginManager, Scoreboard}
 import scalafx.application.JFXApp3
 import HumanityHandGame.services.Game

@@ -1,7 +1,7 @@
 package HumanityHandGame
 
+import HumanityHandGame.ch.makery.address.LoginScene
 import HumanityHandGame.services.Scoreboard
-import HumanityHandGame.ui.LoginScene
 import scalafx.application.JFXApp3
 import scalafx.application.JFXApp3.PrimaryStage
 import scalafx.stage.Stage
