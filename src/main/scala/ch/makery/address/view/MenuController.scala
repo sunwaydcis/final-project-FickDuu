@@ -1,12 +1,14 @@
-package HumanityHandGame.ch.makery.address.view
+package ch.makery.address.view
 
-import HumanityHandGame.ch.makery.address.{CardListScene, LoginScene, ScoreboardScene}
-import scalafx.event.ActionEvent
+import ch.makery.address.ScoreboardScene
+import models.Player
+import services.{Game, LoginManager, Scoreboard}
+import ch.makery.address.{CardListScene, LoginScene, ScoreboardScene}
 import javafx.fxml.FXML
-import HumanityHandGame.services.{LoginManager, Scoreboard}
+import models.Player
 import scalafx.application.JFXApp3
-import HumanityHandGame.services.Game
-import HumanityHandGame.models.Player
+import scalafx.event.ActionEvent
+import services.{Game, LoginManager, Scoreboard}
 
 class MenuController{
   @FXML

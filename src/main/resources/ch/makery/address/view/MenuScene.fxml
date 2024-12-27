@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-border-style: solid inside; -fx-border-width: 10; -fx-border-color: orange;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HumanityHandGame.ch.makery.address.view.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-border-style: solid inside; -fx-border-width: 10; -fx-border-color: orange;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.view.MenuController">
    <children>
-      <HBox alignment="CENTER" prefHeight="500.0" prefWidth="700.0" />
+      <SplitPane dividerPositions="0.36174636174636177" layoutX="10.0" layoutY="10.0" orientation="VERTICAL" prefHeight="483.0" prefWidth="680.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="241.0" prefWidth="678.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="138.0" layoutY="46.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="422.0" style="-fx-border-style: solid inside; -fx-border-width: 2; -fx-border-radius: 5; -fx-border-color: orange;" text="Humanity's Hand" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="48.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="249.0" prefWidth="678.0">
+               <children>
+                  <ListView layoutX="239.0" layoutY="52.0" prefHeight="200.0" prefWidth="200.0" />
+                  <Button layoutX="278.0" layoutY="113.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" text="View Cards" />
+                  <Button layoutX="278.0" layoutY="152.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" text="View Scores" />
+                  <Button layoutX="278.0" layoutY="191.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" text="Exit" />
+                  <Button layoutX="278.0" layoutY="74.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" text="Play" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </AnchorPane>

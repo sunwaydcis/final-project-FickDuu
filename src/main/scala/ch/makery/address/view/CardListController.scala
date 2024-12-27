@@ -1,13 +1,13 @@
-package HumanityHandGame.ch.makery.address.view
+package ch.makery.address.view
 
-import HumanityHandGame.ch.makery.address.MenuScene
-import scalafx.scene.control.{ListView, TextField}
-import scalafx.collections.ObservableBuffer
-import HumanityHandGame.services.CardCollection
+import ch.makery.address.MenuScene
 import javafx.collections.FXCollections
 import javafx.fxml.FXML
-import scalafx.event.ActionEvent
 import scalafx.application.JFXApp3
+import scalafx.collections.ObservableBuffer
+import scalafx.event.ActionEvent
+import scalafx.scene.control.{ListView, TextField}
+import services.CardCollection
 
 class CardListController{
   private val cardCollection = new CardCollection()

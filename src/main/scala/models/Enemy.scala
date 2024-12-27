@@ -1,8 +1,8 @@
-package HumanityHandGame.models
+package models
 
-import scala.util.Random
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
+import scala.util.Random
 
 class Enemy(var hp: Int) extends GameEntity with DeckHandler{
   val name: String = "Enemy"

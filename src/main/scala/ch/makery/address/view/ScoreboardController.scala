@@ -1,13 +1,14 @@
-package HumanityHandGame.ch.makery.address.view
+package ch.makery.address.view
 
-import HumanityHandGame.ch.makery.address.MenuScene
-import scalafx.scene.control.ListView
-import scalafx.collections.ObservableBuffer
-import javafx.fxml.FXML
-import HumanityHandGame.services.Scoreboard
+import services.Scoreboard
+import ch.makery.address.MenuScene
 import javafx.collections.FXCollections
-import scalafx.event.ActionEvent
+import javafx.fxml.FXML
 import scalafx.application.JFXApp3
+import scalafx.collections.ObservableBuffer
+import scalafx.event.ActionEvent
+import scalafx.scene.control.ListView
+import services.Scoreboard
 
 class ScoreboardController{
   @FXML private var listView: ListView[String] = _

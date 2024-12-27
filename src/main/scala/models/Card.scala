@@ -1,4 +1,4 @@
-package HumanityHandGame.models
+package models
 
 abstract class Card(val name: String, val description: String){
   def cardType: String

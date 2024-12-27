@@ -1,6 +1,6 @@
-package HumanityHandGame.services
+package services
 
-import HumanityHandGame.models.Card
+import models.Card
 
 class CardCollection{
   private var cards: List[Card] = List()

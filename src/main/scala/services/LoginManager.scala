@@ -1,4 +1,4 @@
-package HumanityHandGame.services
+package services
 
 object LoginManager{
   private var loggedInUser: Option[String] = None

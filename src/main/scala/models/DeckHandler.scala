@@ -1,7 +1,7 @@
-package HumanityHandGame.models
+package models
 
-import scala.util.Random
 import scala.collection.mutable.ListBuffer
+import scala.util.Random
 
 trait DeckHandler{
   val deck: ListBuffer[Card]

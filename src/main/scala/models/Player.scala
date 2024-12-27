@@ -1,8 +1,8 @@
-package HumanityHandGame.models
+package models
 
-import scala.util.Random
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
+import scala.util.Random
 
 class Player(val name: String) extends GameEntity with DeckHandler {
   var hp: Int = 50

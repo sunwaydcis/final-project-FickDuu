@@ -1,4 +1,4 @@
-package HumanityHandGame.models
+package models
 
 class DefenseCard(name: String, description: String, val heal: Int, val shield: Int) 
   extends Card(name, description){

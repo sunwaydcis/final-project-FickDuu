@@ -1,11 +1,12 @@
-package HumanityHandGame.ch.makery.address.view
+package ch.makery.address.view
 
-import HumanityHandGame.ch.makery.address.MenuScene
-import scalafx.scene.control.{Label, Button, TextField}
-import scalafx.event.ActionEvent
+import services.LoginManager
+import ch.makery.address.MenuScene
 import javafx.fxml.FXML
-import HumanityHandGame.services.LoginManager
 import scalafx.application.JFXApp3
+import scalafx.event.ActionEvent
+import scalafx.scene.control.{Button, Label, TextField}
+import services.LoginManager
 
 class LoginController{
   @FXML private var usernameField: TextField = _

@@ -1,4 +1,4 @@
-package HumanityHandGame.models
+package models
 
 class SpecialCard(name:String, description:String, val effect: String) 
   extends Card(name, description){

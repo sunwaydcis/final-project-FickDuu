@@ -1,4 +1,4 @@
-package HumanityHandGame.ch.makery.address
+package ch.makery.address
 
 import javafx.fxml.FXMLLoader
 import scalafx.scene.Scene

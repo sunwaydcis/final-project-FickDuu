@@ -1,4 +1,4 @@
-package HumanityHandGame.models
+package models
 
 trait GameEntity{
   val name: String

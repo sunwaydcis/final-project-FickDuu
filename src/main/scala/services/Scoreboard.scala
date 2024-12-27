@@ -1,8 +1,8 @@
-package HumanityHandGame.services
+package services
 
 import java.io.{File, PrintWriter}
-import scala.io.Source
 import scala.collection.mutable.ListBuffer
+import scala.io.Source
 
 object Scoreboard{
   private val scores: ListBuffer[(String, Int)] = ListBuffer()
