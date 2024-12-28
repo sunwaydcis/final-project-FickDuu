@@ -6,9 +6,9 @@ import javafx.scene.control.*
 import javafx.scene.layout.Pane
 import javafx.scene.media.{Media, MediaPlayer}
 import javafx.util.Duration
-import javafx.animation.Timeline
+import javafx.animation.{KeyFrame, Timeline}
 import javafx.scene.text.Text
-import scalafx.animation.KeyFrame
+//import scalafx.animation.KeyFrame
 
 import java.io.File
 import scala.collection.mutable.ArrayBuffer
@@ -16,7 +16,8 @@ import scala.collection.mutable.ArrayBuffer
 class musicPlayerController {
 
   @FXML private var body: Pane = _
-  @FXML private var songName, timeRemaining: Label = _
+  @FXML private var songName: Text = _
+  @FXML private var timeRemaining: Label = _
   @FXML private var playButton, pauseButton, resetButton, prevButton, nextButton: Button = _
   @FXML private var speedBox: ComboBox[String] = _
   @FXML private var volumeSlider: Slider = _
@@ -42,7 +43,15 @@ class musicPlayerController {
       media = new Media(songs.head.toURI.toString)
       mediaPlayer = new MediaPlayer(media)
       songName.setText(songs.head.getName)
-      scrollSongName()
+
+      mediaPlayer.setVolume(0.5)
+      volumeSlider.setValue(50)
+
+
+      volumeSlider.valueProperty().addListener((_, _, newValue) => {
+        mediaPlayer.setVolume(newValue.doubleValue() / 100)
+      })
+
     } else{
       songName.setText("No songs available")
     }
@@ -50,11 +59,36 @@ class musicPlayerController {
     speedBox.setItems(FXCollections.observableArrayList(
       "25%", "50%", "75%", "100%", "125%", "150%", "175%", "200%"
     ))
+    speedBox.setPromptText("Speed")
+    speedBox.setOnAction(_ => {
+      changeSpeed()
+      speedBox.setPromptText(null)
+    })
 
-    speedBox.setOnAction(_ => changeSpeed())
+    speedBox.setCellFactory(_ => {
+      val cell = new ListCell[String]() {
+        override def updateItem(item: String, empty: Boolean): Unit = {
+          super.updateItem(item, empty)
+          if (empty || item == null) {
+            setText(null)
+          } else {
+            setText(item) // Display the item's text in the dropdown list
+          }
+        }
+      }
+      cell
+    })
+
+    speedBox.setButtonCell(new ListCell[String]() {
+      override def updateItem(item: String, empty: Boolean): Unit = {
+        super.updateItem(item, empty)
+        // Always show "Speed" as the displayed value
+        setText("Speed")
+      }
+    })
 
     if (mediaPlayer != null) {
-      volumeSlider.valueProperty().bindBidirectional(mediaPlayer.volumeProperty())
+      bindMediaPlayerProperties()
       songProgBar.setProgress(0.0)
     }
   }
@@ -95,9 +129,6 @@ class musicPlayerController {
 
   def bindMediaPlayerProperties(): Unit = {
     if(mediaPlayer != null) {
-      volumeSlider.valueProperty().addListener((_, _, newValue) => {
-        mediaPlayer.setVolume(newValue.doubleValue() / 100)
-      })
       volumeSlider.setValue(mediaPlayer.getVolume * 100)
 
       mediaPlayer.currentTimeProperty().addListener((_, _, newValue) => {
@@ -129,43 +160,44 @@ class musicPlayerController {
   }
 
   def playCurrentSong(): Unit = {
-    if (mediaPlayer != null) mediaPlayer.dispose()
+    if (mediaPlayer != null)
+      mediaPlayer.dispose()
+
     if (songs.nonEmpty) {
+      val currentVolume = if(mediaPlayer != null)
+        mediaPlayer.getVolume
+      else 0.5
+
+      // Save the current playback speed (default to 1.0 if mediaPlayer is null)
+      val currentSpeed = if (mediaPlayer != null)
+        mediaPlayer.getRate
+      else 1.0
+
+      // Create a new Media instance and MediaPlayer for the selected song
       media = new Media(songs(songNumber).toURI.toString)
       mediaPlayer = new MediaPlayer(media)
+
+      // Set the song name in the UI
       songName.setText(songs(songNumber).getName)
+
+      mediaPlayer.setVolume(currentVolume)
+      volumeSlider.setValue(currentVolume * 100)
+
+      speedBox.setPromptText("Speed")
+      speedBox.setValue(null)
+
+      // Restore the previous playback speed
+      mediaPlayer.setRate(currentSpeed)
+
+      // Sync the speedBox with the current speed
+      speedBox.setValue((currentSpeed * 100).toInt + "%")
+
       bindMediaPlayerProperties()
       playMedia()
-      scrollSongName()
       autoplayNextSong()
     } else {
+      // Handle case where no songs are available
       songName.setText("No songs available")
-    }
-  }
-
-  def scrollSongName(): Unit ={
-    if(scrollTimeline != null) scrollTimeline.stop()
-
-    val text = new Text(songName.getText)
-    text.setFont(songName.getFont)
-    val textWidth = text.getBoundsInLocal.getWidth
-    val labelWidth = songName.getWidth
-
-    if(textWidth > labelWidth){
-      val scrollDistance = textWidth - labelWidth
-      scrollTimeline = new Timeline(
-        new javafx.animation.KeyFrame(Duration.seconds(0), _ => {
-          if(songName != null) songName.setTranslateX(0)
-        }),
-        new javafx.animation.KeyFrame(Duration.seconds(5), _ => {
-          if(songName != null) songName.setTranslateX(-scrollDistance)
-        })
-      )
-      scrollTimeline.setCycleCount(javafx.animation.Animation.INDEFINITE)
-      scrollTimeline.setAutoReverse(true)
-      scrollTimeline.play()
-    } else{
-      songName.setTranslateX(0)
     }
   }
 }
