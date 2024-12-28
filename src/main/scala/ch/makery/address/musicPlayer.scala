@@ -1,22 +1,24 @@
 package ch.makery.address
 
-import javafx.application.Application
-import javafx.application.Platform
-import javafx.event.EventHandler
 import javafx.fxml.FXMLLoader
 import javafx.stage.Stage
+import javafx.stage.StageStyle
 import javafx.scene.Parent
 import scalafx.application.JFXApp3
 import scalafx.application.JFXApp3.PrimaryStage
 import scalafx.scene.Scene
-import scalafx.stage.WindowEvent
+import scalafx.Includes._
 
 object musicPlayer extends JFXApp3{
-  stage = new PrimaryStage{
-    title = "Music Player"
-    scene = new Scene(FXMLLoader.load(getClass.getResource("musicPlayer.fxml")))
-    onCloseRequest = _ => {
-      System.exit(0)
-    }
+  
+  override def start(): Unit = {
+    stage = new PrimaryStage():
+      title = "Music Player"
+
+    val root = new FXMLLoader(getClass.getResource("view/musicPlayer.fxml"))
+    
+    stage.scene = new Stage(root)
+    
+    stage.show()
   }
 }

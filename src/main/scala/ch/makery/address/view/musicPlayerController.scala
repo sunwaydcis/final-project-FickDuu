@@ -1,14 +1,17 @@
 package ch.makery.address.view
 
+import ch.makery.address.musicPlayer
 import javafx.fxml.FXML
 import javafx.scene.control.{Button, ComboBox, Label, ProgressBar, Slider}
 import javafx.scene.layout.Pane
 import javafx.scene.media.{Media, MediaPlayer}
 import javafx.collections.FXCollections
 import javafx.util.Duration
+
+import java.io.File
 import scala.collection.mutable.ArrayBuffer
 
-class musicPlayerController{
+class musicPlayerController {
 
   @FXML private var body: Pane = _
   @FXML private var songName: Label = _
@@ -22,56 +25,73 @@ class musicPlayerController{
   private var mediaPlayer: MediaPlayer = _
   private var media: Media = _
 
+  def changeSpeed(): Unit = {
+    if (mediaPlayer != null && speedBox.getValue != null) {
+      val speed = speedBox.getValue.replace("%", "").toInt / 100.0
+      mediaPlayer.setRate(speed)
+    }
+  }
+
+  def playCurrentSong(): Unit = {
+    if (mediaPlayer != null) mediaPlayer.dispose()
+    if (songs.nonEmpty) {
+      media = new Media(songs(songNumber).toURI.toString)
+      mediaPlayer = new MediaPlayer(media)
+      songName.setText(songs(songNumber).getName)
+      playMedia()
+    }
+  }
+  
   def initialize(): Unit = {
     val directory = new File("music")
-    directory.listFiles().foreach(songs.append)
+    val files = Option(directory.listFiles()).getOrElse(Array.empty[File])
+    files.foreach(songs.append)
 
-    media = new Media(songs.head.toURI.toString)
-    mediaPlayer = new MediaPlayer(media)
-    songName.text = songs.head.getName
+    if (songs.nonEmpty) {
+      media = new Media(songs.head.toURI.toString)
+      mediaPlayer = new MediaPlayer(media)
+      songName.setText(songs.head.getName)
+    }
+    else {
+      songName.setText("No songs available")
+    }
 
-    speedBox.items = javafx.collections.FXCollections.observableArrayList("25%", "50%", "75%", "100%", "125%", "150%", "175%", "200%")
-    speedBox.onAction = _ => changeSpeed()
-    volumeSlider.value <==> mediaPlayer.volume
+    speedBox.setItems(FXCollections.observableArrayList(
+      "25%", "50%", "75%", "100%", "125%", "150%", "175%", "200%"
+    ))
 
-    songProgBar.progress <== Bindings.createDoubleBinding(
-      () => mediaPlayer.currentTime.toSeconds / media.duration.toSeconds,
-      mediaPlayer.currentTimeProperty()
-    )
+    speedBox.setOnAction(_ => changeSpeed())
+
+    if (mediaPlayer != null) {
+      volumeSlider.valueProperty().bindBidirectional(mediaPlayer.volumeProperty())
+      songProgBar.setProgress(0.0)
+    }
   }
 
   def playMedia(): Unit = {
-    mediaPlayer.play()
+    if (mediaPlayer != null) mediaPlayer.play()
   }
 
   def pauseMedia(): Unit = {
-    mediaPlayer.pause()
+    if (mediaPlayer != null) mediaPlayer.pause()
   }
 
   def resetMedia(): Unit = {
-    mediaPlayer.seek(Duration.ZERO)
+    if (mediaPlayer != null) mediaPlayer.seek(Duration.ZERO)
   }
 
   def prevMedia(): Unit = {
-    songNumber = (songNumber - 1 + songs.size) % songs.size
-    playCurrentSong()
+    if (songs.nonEmpty) {
+      songNumber = (songNumber - 1 + songs.size) % songs.size
+      playCurrentSong()
+    }
   }
 
   def nextMedia(): Unit = {
-    songNumber = (songNumber + 1) % songs.size
-    playCurrentSong()
-  }
+    if (songs.nonEmpty) {
+      songNumber = (songNumber + 1) % songs.size
+      playCurrentSong()
 
-  private def changeSpeed(): Unit = {
-    val speed = speedBox.value.value.dropRight(1).toInt / 100.0
-    mediaPlayer.setRate(speed)
-  }
-
-  private def playCurrentSong(): Unit = {
-    mediaPlayer.stop()
-    media = new Media(songs(songNumber).toURI.toString)
-    mediaPlayer = new MediaPlayer(media)
-    songName.text = songs(songNumber).getName
-    playMedia()
+    }
   }
 }
