@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="body" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="237.0" prefWidth="600.0" style="-fx-background-color: #273C85;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.musicPlayerController">
+<AnchorPane fx:id="body" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="237.0" prefWidth="600.0" style="-fx-background-color: #273C85;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.musicPlayerController">
    <children>
       <Label fx:id="songName" alignment="CENTER" layoutX="98.0" layoutY="27.0" prefHeight="81.0" prefWidth="404.0" text="Song Name" textAlignment="CENTER" textFill="#f23d67">
          <font>
@@ -72,5 +77,6 @@
       </Button>
       <Slider fx:id="volumeSlider" blendMode="HARD_LIGHT" layoutX="398.0" layoutY="150.0" prefHeight="14.0" prefWidth="158.0" value="50.0" />
       <ComboBox fx:id="speedBox" blendMode="HARD_LIGHT" layoutX="402.0" layoutY="177.0" onAction="#changeSpeed" prefWidth="150.0" promptText="SPEED" />
+      <Label fx:id="timeRemaining" alignment="CENTER" layoutX="511.0" layoutY="100.0" prefHeight="17.0" prefWidth="40.0" text="00 : 00" textAlignment="CENTER" textFill="#f23d67" />
    </children>
 </AnchorPane>
