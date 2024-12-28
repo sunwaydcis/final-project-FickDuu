@@ -42,18 +42,35 @@ class musicPlayerController {
   }
   
   def initialize(): Unit = {
-    val directory = new File("music")
-    val files = Option(directory.listFiles()).getOrElse(Array.empty[File])
-    files.foreach(songs.append)
+    val musicDirURL = getClass.getResource("/music")
+    if (musicDirURL != null){
+      val directory = new File(musicDirURL.toURI)
+      val files = Option(directory.listFiles()).getOrElse(Array.empty[File])
+      files.filter(_.isFile).foreach(songs.append)
+    } else{
+      println("Music folder not found in resources")
+    }
 
-    if (songs.nonEmpty) {
+    if (songs.nonEmpty){
       media = new Media(songs.head.toURI.toString)
       mediaPlayer = new MediaPlayer(media)
       songName.setText(songs.head.getName)
-    }
-    else {
+    } else{
       songName.setText("No songs available")
     }
+
+//    val directory = new File("music")
+//    val files = Option(directory.listFiles()).getOrElse(Array.empty[File])
+//    files.foreach(songs.append)
+//
+//    if (songs.nonEmpty) {
+//      media = new Media(songs.head.toURI.toString)
+//      mediaPlayer = new MediaPlayer(media)
+//      songName.setText(songs.head.getName)
+//    }
+//    else {
+//      songName.setText("No songs available")
+//    }
 
     speedBox.setItems(FXCollections.observableArrayList(
       "25%", "50%", "75%", "100%", "125%", "150%", "175%", "200%"

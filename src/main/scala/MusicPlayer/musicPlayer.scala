@@ -8,28 +8,20 @@ import java.io.IOException
 
 object musicPlayer extends JFXApp3 {
 
-  // Override the start method from JFXApp3
   override def start(): Unit = {
     try {
-      // Load the FXML file using JavaFX's FXMLLoader
+      // Load FXML file
       val loader = new FXMLLoader(getClass.getResource("/musicPlayer.fxml"))
-      val root = loader.load[AnchorPane]() // Load JavaFX AnchorPane
+      val root = loader.load[AnchorPane]()
 
-      // Wrap the JavaFX AnchorPane in a ScalaFX wrapper
+      // Wrap JavaFX AnchorPane in ScalaFX AnchorPane
       val scalafxRoot = new scalafx.scene.layout.AnchorPane(root)
-
-      // Set up the controller from the FXML file
-      val controller = loader.getController[musicPlayerController]
-
-      // Create a new ScalaFX Scene from the wrapped AnchorPane
-      val scene = new Scene(scalafxRoot)
 
       // Set up the primary stage
       stage = new JFXApp3.PrimaryStage {
         title = "Music Player"
-        scene = scene
+        scene = new Scene(scalafxRoot)
       }
-
     } catch {
       case e: IOException =>
         e.printStackTrace()
