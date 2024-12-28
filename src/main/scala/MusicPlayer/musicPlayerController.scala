@@ -1,11 +1,10 @@
-package ch.makery.address.view
+package MusicPlayer
 
-import ch.makery.address.musicPlayer
+import javafx.collections.FXCollections
 import javafx.fxml.FXML
-import javafx.scene.control.{Button, ComboBox, Label, ProgressBar, Slider}
+import javafx.scene.control.*
 import javafx.scene.layout.Pane
 import javafx.scene.media.{Media, MediaPlayer}
-import javafx.collections.FXCollections
 import javafx.util.Duration
 
 import java.io.File

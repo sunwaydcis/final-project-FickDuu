@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="body" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="237.0" prefWidth="600.0" style="-fx-background-color: #273C85;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.view.musicPlayerController">
+<AnchorPane fx:id="body" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="237.0" prefWidth="600.0" style="-fx-background-color: #273C85;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.musicPlayerController">
    <children>
-      <Label fx:id="songName" alignment="CENTER" layoutY="27.0" prefHeight="81.0" prefWidth="600.0" text="Hozier" textAlignment="CENTER" textFill="#f23d67">
+      <Label fx:id="songName" alignment="CENTER" layoutY="27.0" prefHeight="81.0" prefWidth="600.0" text="Song Name" textAlignment="CENTER" textFill="#f23d67">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
@@ -25,7 +25,7 @@
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="41.0">
                <image>
-                  <Image url="@../../../../images/back_4316218.png" />
+                  <Image url="@images/back_4316218.png" />
                </image>
             </ImageView>
          </graphic>
@@ -37,7 +37,7 @@
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="41.0">
                <image>
-                  <Image url="@../../../../images/play_4316241.png" />
+                  <Image url="@images/play_4316241.png" />
                </image>
             </ImageView>
          </graphic>
@@ -49,7 +49,7 @@
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="41.0">
                <image>
-                  <Image url="@../../../../images/pause-button_4316237.png" />
+                  <Image url="@images/pause-button_4316237.png" />
                </image>
             </ImageView>
          </graphic>
@@ -58,7 +58,7 @@
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="41.0">
                <image>
-                  <Image url="@../../../../images/recent_4316248.png" />
+                  <Image url="@images/recent_4316248.png" />
                </image>
             </ImageView>
          </graphic>
@@ -70,7 +70,7 @@
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="41.0">
                <image>
-                  <Image url="@../../../../images/next_4316218.png" />
+                  <Image url="@images/next_4316218.png" />
                </image>
             </ImageView>
          </graphic>
