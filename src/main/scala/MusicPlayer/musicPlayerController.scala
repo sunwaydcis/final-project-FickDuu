@@ -37,7 +37,10 @@ class musicPlayerController {
       media = new Media(songs(songNumber).toURI.toString)
       mediaPlayer = new MediaPlayer(media)
       songName.setText(songs(songNumber).getName)
+      bindMediaPlayerProperties()
       playMedia()
+    } else{
+      songName.setText("No songs available")
     }
   }
   
@@ -58,19 +61,6 @@ class musicPlayerController {
     } else{
       songName.setText("No songs available")
     }
-
-//    val directory = new File("music")
-//    val files = Option(directory.listFiles()).getOrElse(Array.empty[File])
-//    files.foreach(songs.append)
-//
-//    if (songs.nonEmpty) {
-//      media = new Media(songs.head.toURI.toString)
-//      mediaPlayer = new MediaPlayer(media)
-//      songName.setText(songs.head.getName)
-//    }
-//    else {
-//      songName.setText("No songs available")
-//    }
 
     speedBox.setItems(FXCollections.observableArrayList(
       "25%", "50%", "75%", "100%", "125%", "150%", "175%", "200%"
@@ -109,5 +99,21 @@ class musicPlayerController {
       playCurrentSong()
 
     }
+  }
+
+  def bindMediaPlayerProperties(): Unit = {
+    if(mediaPlayer != null){
+      volumeSlider.valueProperty().addListener((_, _, newValue) =>{
+        mediaPlayer.setVolume(newValue.doubleValue() / 100)
+      })
+      volumeSlider.setValue(mediaPlayer.getVolume * 100)
+    }
+
+    mediaPlayer.currentTimeProperty().addListener((_, _, newValue) =>{
+      val progress = if (mediaPlayer.getTotalDuration != null)
+        newValue.toSeconds / mediaPlayer.getTotalDuration.toSeconds
+      else 0.0
+        songProgBar.setProgress(progress)
+    })
   }
 }
