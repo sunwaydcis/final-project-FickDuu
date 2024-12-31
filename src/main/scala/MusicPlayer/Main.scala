@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader
 import javafx.scene.layout.AnchorPane
 import java.io.IOException
 
-object musicPlayer extends JFXApp3 {
+object Main extends JFXApp3 {
 
   override def start(): Unit = {
     try {
